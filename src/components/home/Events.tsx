@@ -38,15 +38,18 @@ const events = [
 ];
 
 export function Events() {
-  const titleRef    = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLDivElement>(null);
   const titleInView = useInView(titleRef, { once: true, margin: "-80px" });
 
   return (
     <section id="events" className="relative py-24 px-6 overflow-hidden bg-transparent">
-      {/* Glow */}
-      <div className="blob-sky w-[600px] h-[600px] -top-40 -right-20 opacity-20" />
+      
+      {/* ✅ Softer Glow */}
+      <div className="blob-sky w-[600px] h-[600px] -top-40 -right-20 opacity-10 blur-3xl" />
 
       <div className="max-w-6xl mx-auto relative z-10">
+        
+        {/* Title */}
         <div ref={titleRef} className="mb-14">
           <motion.span
             className="badge-sky mb-4 inline-block"
@@ -56,6 +59,7 @@ export function Events() {
           >
             🌟 Community Impact
           </motion.span>
+
           <div className="overflow-hidden">
             <motion.h2
               className="font-bold text-4xl lg:text-5xl text-white uppercase tracking-tight"
@@ -69,7 +73,7 @@ export function Events() {
           </div>
         </div>
 
-        {/* Event Grid */}
+        {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {events.map((ev, i) => (
             <motion.a
@@ -77,25 +81,32 @@ export function Events() {
               href={ev.href}
               target="_blank"
               rel="noopener noreferrer"
-              className={`card-happy group flex flex-col ${ev.wide ? "md:col-span-2 lg:col-span-2" : ""}`}
+              className={`card-happy group relative flex flex-col overflow-hidden ${
+                ev.wide ? "md:col-span-2 lg:col-span-2" : ""
+              }`}
               initial={{ opacity: 0, y: 50 }}
               animate={titleInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
               transition={{ duration: 0.7, delay: 0.2 + i * 0.12, ...SPRING }}
             >
+              
+              {/* ✅ Glass Overlay (Fixes readability) */}
+              <div className="absolute inset-0 bg-black/20 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition duration-300" />
+
               {/* Image */}
               {ev.img && (
                 <div className="relative h-52 overflow-hidden rounded-t-[1.5rem]">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={ev.img}
                     alt={ev.title}
                     className="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 </div>
               )}
 
-              <div className="p-7 flex flex-col flex-1">
+              {/* Content */}
+              <div className="relative z-10 p-7 flex flex-col flex-1">
+                
                 {!ev.img && (
                   <div
                     className="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform duration-300"
@@ -105,18 +116,23 @@ export function Events() {
                   </div>
                 )}
 
-                <span className={`${ev.tagColor} mb-3 self-start`}>{ev.tag}</span>
+                <span className={`${ev.tagColor} mb-3 self-start`}>
+                  {ev.tag}
+                </span>
 
-                <h3
-                  className="font-bold text-white text-xl mb-3 leading-tight group-hover:text-[#38a9f8] transition-colors duration-300"
-                >
+                <h3 className="font-bold text-white text-xl mb-3 leading-tight group-hover:text-[#38a9f8] transition-colors duration-300 drop-shadow-sm">
                   {ev.title}
                 </h3>
-                <p className="text-slate-400 text-sm leading-relaxed flex-1">{ev.desc}</p>
 
-                <div className="flex items-center gap-1.5 mt-5 text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ color: "#38a9f8" }}>
+                {/* ✅ FIXED TEXT */}
+                <p className="text-white/80 text-sm leading-relaxed flex-1">
+                  {ev.desc}
+                </p>
+
+                <div className="flex items-center gap-1.5 mt-5 text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-[#38a9f8]">
                   Learn More <ExternalLink className="w-3 h-3" />
                 </div>
+
               </div>
             </motion.a>
           ))}
