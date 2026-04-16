@@ -17,10 +17,8 @@ export default function CountdownTimer() {
   });
 
   useEffect(() => {
-    // Set target date to 30 days from now
-    const targetDate = new Date();
-    targetDate.setDate(targetDate.getDate() + 30);
-    const targetTime = targetDate.getTime();
+    // Set target date to April 29
+    const targetTime = new Date("2026-04-29T00:00:00+05:30").getTime();
 
     const timer = setInterval(() => {
       const now = new Date().getTime();

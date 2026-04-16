@@ -80,8 +80,8 @@ export default function Home() {
         {/* 2. Countdown to next event */}
         <section className="relative z-20 min-h-screen w-full flex flex-col justify-center"><CountdownTimer /></section>
 
-        {/* 3. Scrolling AI topics ticker (Behind Planet) */}
-        <section className="relative z-[5] min-h-screen w-full flex flex-col justify-center"><ExploreTicker /></section>
+        {/* 3. Scrolling AI topics ticker */}
+        <section className="relative z-20 min-h-screen w-full flex flex-col justify-center"><ExploreTicker /></section>
 
         {/* 4. About + 3D feature cards + stats */}
         <section className="relative z-20 min-h-screen w-full flex flex-col justify-center"><About /></section>

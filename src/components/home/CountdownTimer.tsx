@@ -16,8 +16,8 @@ export function CountdownTimer() {
   });
 
   useEffect(() => {
-    // DeepStation MSRIT Next Event — set to June 30 2026
-    const targetTime = new Date("2026-06-30T18:00:00+05:30").getTime();
+    // DeepStation Next Event — set to April 29
+    const targetTime = new Date("2026-04-29T00:00:00+05:30").getTime();
 
     const tick = () => {
       const now  = Date.now();
