@@ -16,6 +16,7 @@ import { MissionArchive }  from "@/components/home/MissionArchive";
 import { Team }            from "@/components/home/Team";
 import { CTA }             from "@/components/home/CTA";
 import { Footer }          from "@/components/home/Footer";
+import { StarNav }         from "@/components/home/StarNav";
 
 // ── Dynamic import: Three.js scene must NOT run on server ──────
 const PlanetScene = dynamic(() => import("@/components/three/PlanetScene"), {
@@ -54,6 +55,9 @@ export default function Home() {
           style={{ scaleX, background: "#0e8ce4" }}
         />
 
+        {/* ── Fixed UI Overlay Elements ── */}
+        <StarNav />
+
         {/* ── Nebula galaxy background (CSS) ── */}
         <div className="fixed inset-0 z-[-10] pointer-events-none overflow-hidden">
           <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at center, #0c1b3d 0%, #020617 100%)" }} />
@@ -75,28 +79,28 @@ export default function Home() {
 
         {/* ── Page content ── */}
         {/* 1. Hero */}
-        <section className="relative z-20 min-h-screen w-full flex flex-col justify-center"><Hero /></section>
+        <section id="home" className="relative z-20 min-h-screen w-full flex flex-col justify-center"><Hero /></section>
 
         {/* 2. Countdown to next event */}
-        <section className="relative z-20 min-h-screen w-full flex flex-col justify-center"><CountdownTimer /></section>
+        <section id="hackathon" className="relative z-20 min-h-screen w-full flex flex-col justify-center"><CountdownTimer /></section>
 
         {/* 3. Scrolling AI topics ticker */}
-        <section className="relative z-20 min-h-screen w-full flex flex-col justify-center"><ExploreTicker /></section>
+        <section id="blogs" className="relative z-20 min-h-screen w-full flex flex-col justify-center"><ExploreTicker /></section>
 
         {/* 4. About + 3D feature cards + stats */}
-        <section className="relative z-20 min-h-screen w-full flex flex-col justify-center"><About /></section>
+        <section id="about" className="relative z-20 min-h-screen w-full flex flex-col justify-center"><About /></section>
 
         {/* 5. Events / Community Impact */}
-        <section className="relative z-20 min-h-screen w-full flex flex-col justify-center"><Events /></section>
+        <section id="events" className="relative z-20 min-h-screen w-full flex flex-col justify-center"><Events /></section>
 
-        {/* 6. Testimonials carousel */}
-        <section className="relative z-20 min-h-screen w-full flex flex-col justify-center"><Testimonials /></section>
+        {/* 6. Testimonials carousel (Crew Network) */}
+        <section id="network" className="relative z-20 min-h-screen w-full flex flex-col justify-center"><Testimonials /></section>
 
         {/* 7. Mission Archive bento grid */}
-        <section className="relative z-20 min-h-screen w-full flex flex-col justify-center"><MissionArchive /></section>
+        <section id="mission" className="relative z-20 min-h-screen w-full flex flex-col justify-center"><MissionArchive /></section>
 
         {/* 8. Team */}
-        <section className="relative z-20 min-h-screen w-full flex flex-col justify-center"><Team /></section>
+        <section id="team" className="relative z-20 min-h-screen w-full flex flex-col justify-center"><Team /></section>
 
         {/* 9. CTA — Join Now */}
         <section className="relative z-20 min-h-screen w-full flex flex-col justify-center"><CTA /></section>

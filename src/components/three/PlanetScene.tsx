@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef, useEffect, useMemo } from "react";
+import { useRef, useEffect } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
-import { Sphere, Torus, Float, Stars, Icosahedron, Box } from "@react-three/drei";
+import { Sphere, Float, Stars, Icosahedron, Box } from "@react-three/drei";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import * as THREE from "three";
 import { MotionValue } from "framer-motion";
@@ -10,10 +10,10 @@ import { MotionValue } from "framer-motion";
 // ── Planet material (custom GLSL) ─────────────────────────────
 const PlanetMaterial = {
   uniforms: {
-    time:       { value: 0 },
-    color1:     { value: new THREE.Color("#002860") },
-    color2:     { value: new THREE.Color("#1886CA") },
-    glowColor:  { value: new THREE.Color("#52A9F0") },
+    time: { value: 0 },
+    color1: { value: new THREE.Color("#020b1a") }, // Very deep midnight blue
+    color2: { value: new THREE.Color("#0ea5e9") }, // Vibrant Cyan
+    glowColor: { value: new THREE.Color("#38bdf8") }, // Bright sky blue glow
   },
   vertexShader: `
     varying vec2 vUv;
@@ -103,44 +103,20 @@ function PlanetOccluder() {
   );
 }
 
-function PlanetCore() {
-  const ref = useRef<THREE.Points>(null);
-  const count = 3000;
-  const positions = useMemo(() => {
-    const arr = new Float32Array(count * 3);
-    for (let i = 0; i < count; i++) {
-      const r = 1.8 * Math.cbrt(Math.random());
-      const theta = Math.random() * 2 * Math.PI;
-      const phi = Math.acos(2 * Math.random() - 1);
-      arr[i * 3]     = r * Math.sin(phi) * Math.cos(theta);
-      arr[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
-      arr[i * 3 + 2] = r * Math.cos(phi);
-    }
-    return arr;
-  }, []);
-  useFrame((state) => {
-    if (ref.current) {
-      ref.current.rotation.y = state.elapsed * 0.05;
-      ref.current.rotation.x = state.elapsed * 0.02;
-    }
-  });
-  return (
-    <points ref={ref}>
-      <bufferGeometry>
-        <bufferAttribute attach="attributes-position" count={count} array={positions} itemSize={3} />
-      </bufferGeometry>
-      <pointsMaterial size={0.03} color="#52A9F0" transparent opacity={0.8} blending={THREE.AdditiveBlending} depthWrite={false} />
-    </points>
-  );
-}
+
 
 function PlanetMiddle({ scrollYProgress }: { scrollYProgress: MotionValue<number> }) {
+  const ref = useRef<THREE.Mesh>(null);
   const materialRef = useRef<THREE.ShaderMaterial>(null);
   useFrame((state) => {
+    if (ref.current) {
+      ref.current.rotation.y = state.clock.elapsedTime * 0.15; // rotate on axis with good speed
+    }
     if (materialRef.current) {
-      materialRef.current.uniforms.time.value = state.elapsed;
+      materialRef.current.uniforms.time.value = state.clock.elapsedTime;
       const scroll = scrollYProgress.get();
-      const intensity = 1 + scroll * 2;
+      // Delay the glowing explosion effect until later down the scroll
+      const intensity = scroll < 0.75 ? 1 + (scroll / 0.75) * 0.5 : 1.5 + ((scroll - 0.75) / 0.25) * 3;
       materialRef.current.uniforms.glowColor.value.setRGB(
         0.32 * intensity,
         0.66 * intensity,
@@ -149,13 +125,14 @@ function PlanetMiddle({ scrollYProgress }: { scrollYProgress: MotionValue<number
     }
   });
   return (
-    <Sphere args={[2, 64, 64]}>
+    <Sphere ref={ref} args={[2, 64, 64]}>
       <shaderMaterial
         ref={materialRef}
         vertexShader={PlanetMaterial.vertexShader}
         fragmentShader={PlanetMaterial.fragmentShader}
         uniforms={THREE.UniformsUtils.clone(PlanetMaterial.uniforms)}
         transparent
+        // Retain additive blending but lower base opacity for a better hollow/glittering look if desired
         blending={THREE.AdditiveBlending}
         depthWrite={false}
       />
@@ -167,11 +144,11 @@ function PlanetOuter({ scrollYProgress }: { scrollYProgress: MotionValue<number>
   const ref = useRef<THREE.Mesh>(null);
   useFrame((state) => {
     if (ref.current) {
-      ref.current.rotation.y = state.elapsed * 0.02;
-      ref.current.rotation.z = state.elapsed * 0.01;
-      
+      ref.current.rotation.y = state.clock.elapsedTime * 0.05; // increased speed slightly
+      ref.current.rotation.z = state.clock.elapsedTime * 0.02;
+
       const scroll = scrollYProgress.get();
-      const scale = 1 + scroll * 0.2;
+      const scale = scroll < 0.75 ? 1 + (scroll / 0.75) * 0.2 : 1.2 + ((scroll - 0.75) / 0.25) * 2;
       ref.current.scale.set(scale, scale, scale);
     }
   });
@@ -182,19 +159,7 @@ function PlanetOuter({ scrollYProgress }: { scrollYProgress: MotionValue<number>
   );
 }
 
-function OrbitRing() {
-  const ref = useRef<THREE.Mesh>(null);
-  useFrame((state) => {
-    if (ref.current) ref.current.rotation.z = state.elapsed * 0.1;
-  });
-  return (
-    <group rotation={[Math.PI / 3, Math.PI / 6, 0]}>
-      <Torus ref={ref} args={[3.5, 0.02, 64, 100]}>
-        <meshBasicMaterial color="#52A9F0" transparent opacity={0.4} blending={THREE.AdditiveBlending} />
-      </Torus>
-    </group>
-  );
-}
+
 
 function FloatingShapes() {
   return (
@@ -233,20 +198,22 @@ function CameraController({ scrollYProgress }: { scrollYProgress: MotionValue<nu
 
   useFrame(() => {
     const scroll = scrollYProgress.get();
-    
+
     let targetZ = 8;
-    if (scroll < 0.5) {
-      targetZ = THREE.MathUtils.lerp(8, 3, scroll * 2);
+    // Delay the "explosion" zoom until 75% of the scroll is complete (after about 2 pages)
+    if (scroll < 0.75) {
+      targetZ = THREE.MathUtils.lerp(8, 3, scroll / 0.75);
     } else {
-      targetZ = THREE.MathUtils.lerp(3, 0.1, (scroll - 0.5) * 2);
+      targetZ = THREE.MathUtils.lerp(3, 0.1, (scroll - 0.75) / 0.25);
     }
 
     const targetX = mouse.current.x * 0.5;
     const targetY = mouse.current.y * 0.5;
-
+    
     camera.position.x = THREE.MathUtils.lerp(camera.position.x, targetX, 0.05);
     camera.position.y = THREE.MathUtils.lerp(camera.position.y, targetY, 0.05);
     camera.position.z = THREE.MathUtils.lerp(camera.position.z, targetZ, 0.05);
+
     camera.lookAt(0, 0, 0);
   });
 
@@ -267,12 +234,10 @@ export default function PlanetScene({ scrollYProgress }: { scrollYProgress: Moti
 
       <group>
         <PlanetOccluder />
-        <PlanetCore />
         <PlanetMiddle scrollYProgress={scrollYProgress} />
         <PlanetOuter scrollYProgress={scrollYProgress} />
       </group>
 
-      <OrbitRing />
       <FloatingShapes />
       <CameraController scrollYProgress={scrollYProgress} />
 
