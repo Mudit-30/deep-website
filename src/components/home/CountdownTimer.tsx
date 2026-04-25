@@ -16,8 +16,8 @@ export function CountdownTimer() {
   });
 
   useEffect(() => {
-    // DeepStation Next Event — set to April 29
-    const targetTime = new Date("2026-04-29T00:00:00+05:30").getTime();
+    // DeepStation Next Event — set to May 8
+    const targetTime = new Date("2026-05-08T00:00:00+05:30").getTime();
 
     const tick = () => {
       const now  = Date.now();
