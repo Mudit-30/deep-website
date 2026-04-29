@@ -6,15 +6,15 @@ import { X, ExternalLink } from "lucide-react";
 
 const coreMembers = [
   "Grant Kurz", "Harshit Agrawal", "Anaghaa Patil", "Mudit Saxena", "Amogh Shastry",
-  "Kartikey mani Tripathi", "Siddharth Priyatam", "Nikita Hedge", "Shyreyas"
+  "Kartikey mani Tripathi", "Siddharth Priyatam", "Nikita Hedge", "Shreyas Mane"
 ];
 
 const generalMembers = [
   "Swayam Bohara", "Venkatesh Reddy", "Shaik Imran", "Ananya Kalmath",
-  "Yashmita", "gursharan kaur", "Harshita", "Vanshika", "Vibodharya Jampale Sathish",
+  "Yashmita", "gursharan kaur", "Harshitha C P", "Vanshika", "Vibodharya Jampale Sathish",
   "Mihika Jain", "Akash Biswas", "Shriya Bhat", "Niranjan Nishore", "Sinchana",
-  "Nysa Lakhotia", "Akash S", "Venkat", "Ishita Agarwal", "Supriya J",
-  "Dakshitha S", "Mukul Prasad", "Sreejani Bhattacharya", "Vigyanth", "Deshena",
+  "Nysa Lakhotia", "Akash S", "Venkat Vaishnav", "Ishita Agarwal", "Supriya J",
+  "Dakshitha S", "Mukul Prasad", "Sreejani Bhattacharya", "Vigyanth",
   "Rohan N Karadigudd", "Mohammed Mohsin Mahaboob Basha", "Omkar Tonne",
   "Subhash Kashyap K H", "Swastik R Phadke", "Pranav R Mane"
 ];
@@ -22,23 +22,80 @@ const generalMembers = [
 const imageMap: Record<string, string> = {
   "Grant Kurz": "/img/crew/grant kurz.jpeg",
   "Akash S": "/img/crew/Akash S.jpeg",
-  "Anaghaa Patil": "/img/crew/Anaghaa.jpeg",
+  "Anaghaa Patil": "/img/crew/anaghaa.jpg",
   "Harshit Agrawal": "/img/crew/Harshit.jpeg",
   "Mudit Saxena": "/img/crew/Mudit.jpeg",
   "Mukul Prasad": "/img/crew/Mukul.jpeg",
-  "Niranjan Nishore": "/img/crew/Niranjan Nichore.jpeg",
+  "Niranjan Nishore": "/img/crew/Niranjan Nishore.jpeg",
   "Rohan N Karadigudd": "/img/crew/Rohan.jpeg",
   "Akash Biswas": "/img/crew/akash biswas.jpeg",
   "Amogh Shastry": "/img/crew/amogh.jpeg",
   "Ishita Agarwal": "/img/crew/ishita.jpeg",
-  "Nikita Hedge": "/img/crew/nikita ravindra.jpeg",
-  "Nysa Lakhotia": "/img/crew/nysa.jpeg",
+  "Nikita Hedge": "/img/crew/nikita hedge.jpeg",
+  "Nysa Lakhotia": "/img/crew/Nysa.png",
   "Siddharth Priyatam": "/img/crew/siddharth.jpeg",
-  "Sinchana": "/img/crew/sinchana.jpeg",
   "Vanshika": "/img/crew/vanshika.jpeg",
-  "Vibodharya Jampale Sathish": "/img/crew/vibodharya.jpeg",
-  "Vigyanth": "/img/crew/vigyanth.jpeg",
-  "Yashmita": "/img/crew/yashmita Sudhir.jpeg"
+  "Vibodharya Jampale Sathish": "/img/crew/Vibodharya_Jampale.jpg",
+  "Vigyanth": "/img/crew/vigyant_nayak (1).jpeg",
+  "Yashmita": "/img/crew/Yashmita Sudhir.png",
+  "Kartikey mani Tripathi": "/img/crew/Kartikey.jpg",
+  "Mohammed Mohsin Mahaboob Basha": "/img/crew/Mohammed Mohsin.jpg",
+  "Pranav R Mane": "/img/crew/Pranav R Mane.jpg",
+  "Venkat Vaishnav": "/img/crew/Venkat vaishanv.png",
+  "Venkatesh Reddy": "/img/crew/Venkatesh Reddy K.jpeg",
+  "Shreyas Mane": "/img/crew/Shreyas Mane.jpeg",
+  "Mihika Jain": "/img/crew/Mihika.png",
+  "Subhash Kashyap K H": "/img/crew/subhash.jpeg",
+  "Shaik Imran": "/img/crew/shaik.jpg",
+  "Omkar Tonne": "/img/crew/omkar.jpeg"
+};
+
+const linkedinMap: Record<string, string> = {
+  "Mukul Prasad": "https://www.linkedin.com/in/MukulPrasad1",
+  "Akash Biswas": "https://www.linkedin.com/in/akash-biswas-887914342",
+  "Sreejani Bhattacharya": "https://www.linkedin.com/in/sreejani-bhattacharya-966a20366",
+  "gursharan kaur": "https://www.linkedin.com/in/gursharan-kaur-17168b316",
+  "Vanshika": "https://www.linkedin.com/in/vanshika-lalwani-976140372",
+  "Vigyanth": "https://www.linkedin.com/in/vigyant-nayak-a32479302",
+  "Ananya Kalmath": "https://www.linkedin.com/in/ananya-kalmath-5a3a10299",
+  "Venkatesh Reddy": "https://www.linkedin.com/in/venkatesh-reddy-k-6aba34333",
+  "Akash S": "https://www.linkedin.com/in/akash-s-ksgd",
+  "Yashmita": "https://www.linkedin.com/in/yashmita-s-4a5b5b1b8",
+  "Vibodharya Jampale Sathish": "https://www.linkedin.com/in/vibodharya-jampale-sathish",
+  "Subhash Kashyap K H": "https://www.linkedin.com/in/subhash-kashyap-k-h-648830358",
+  "Rohan N Karadigudd": "https://www.linkedin.com/in/rohan-n-karadigudd-b51a58327",
+  "Mihika Jain": "https://www.linkedin.com/in/mihika-jain-10173b326",
+  "Kartikey mani Tripathi": "https://www.linkedin.com/in/kartikey-mani-tripathi-learner",
+  "Nikita Hedge": "https://www.linkedin.com/in/nikita-ravindra-315498322",
+  "Mohammed Mohsin Mahaboob Basha": "https://www.linkedin.com/in/mohammed-mohsin-817551335",
+  "Swayam Bohara": "https://www.linkedin.com/in/swayam-bohara-98275b326",
+  "Shriya Bhat": "https://in.linkedin.com/in/shriya-bhat-",
+  "Omkar Tonne": "https://www.linkedin.com/in/omkar-tonne-1468a6311",
+  "Sinchana": "https://www.linkedin.com/in/sinchana-jeppu-649102366",
+  "Pranav R Mane": "https://www.linkedin.com/in/pranav-mane-024394324",
+  "Supriya J": "https://www.linkedin.com/in/supriya-j-916909365",
+  "Niranjan Nishore": "https://www.linkedin.com/in/niranjan-nishore-678b34332",
+  "Shaik Imran": "https://www.linkedin.com/in/shaik-imran-281a6331a",
+  "Swastik R Phadke": "https://www.linkedin.com/in/swastik-phadke",
+  "Nysa Lakhotia": "https://www.linkedin.com/in/nysa-lakhotia",
+  "Ishita Agarwal": "https://www.linkedin.com/in/ishita-agarwal-aa854536a",
+  "Grant Kurz": "https://www.linkedin.com/in/grant-kurz",
+  "Anaghaa Patil": "https://www.linkedin.com/in/anaghaa-patil",
+  "Mudit Saxena": "https://www.linkedin.com/in/muditsaxena30",
+  "Harshit Agrawal": "https://www.linkedin.com/in/harshitagrawal700",
+  "Siddharth Priyatam": "https://www.linkedin.com/in/siddharth-priyatam-462632337",
+  "Amogh Shastry": "https://www.linkedin.com/in/amoghshastry",
+  "Shreyas Mane": "https://www.linkedin.com/in/shreyas-mane-15b9192b7",
+  "Harshitha C P": "https://www.linkedin.com/in/harshitha-c-p-3505243b1",
+  "Venkat Vaishnav": "https://www.linkedin.com/in/venkat-vaishnav-949b16403",
+  "Dakshitha S": "https://www.linkedin.com/in/dakshitha-s-04105138b",
+};
+
+const bioMap: Record<string, string> = {
+  "Grant Kurz": "Visionary leader architecting the future of AI. Specialized in computational architectures and accelerating DeepStation's core infrastructure.",
+  "Harshit Agrawal": "Exceptional team leader and strategist, driving technical innovation and community growth with precision.",
+  "Anaghaa Patil": "Empathetic and efficient team leader, bridging the gap between complex AI concepts and real-world execution.",
+  "Mudit Saxena": "Technical powerhouse focused on building seamless, high-performance systems for the next generation of AI."
 };
 
 // Place N nodes evenly on a ring; cx/cy = center %, rx/ry = radii %, angleOffset = rotation
@@ -86,6 +143,7 @@ export function Testimonials() {
         name,
         initials: initials.toUpperCase(),
         image: imageMap[name] || null,
+        linkedin: linkedinMap[name] || null,
         x: pos.x,
         y: pos.y,
         ring, // 0 = hub, 1 = inner, 2 = mid, 3 = outer
@@ -231,7 +289,7 @@ export function Testimonials() {
             }}
           >
             {node.image ? (
-              <img src={node.image} alt={node.name} className="w-full h-full object-cover rounded-full" />
+              <img src={node.image} alt={node.name} className="w-full h-full object-cover rounded-full" style={{ objectPosition: ["Subhash Kashyap K H", "Mohammed Mohsin Mahaboob Basha", "Yashmita"].includes(node.name) ? "center" : "top" }} />
             ) : (
               node.initials
             )}
@@ -274,7 +332,7 @@ export function Testimonials() {
               {/* Modal Image Half */}
               <div className="w-full md:w-1/2 h-64 md:h-full relative overflow-hidden bg-[#020617] border-b md:border-b-0 md:border-r border-[#52A9F0]/20">
                 {activeNode.image ? (
-                  <img src={activeNode.image} className="w-full h-full object-cover opacity-90" alt={activeNode.name} />
+                  <img src={activeNode.image} className="w-full h-full object-cover opacity-90" alt={activeNode.name} style={{ objectPosition: ["Subhash Kashyap K H", "Mohammed Mohsin Mahaboob Basha", "Yashmita"].includes(activeNode.name) ? "center" : "top" }} />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-6xl font-bold bg-[#1886CA] text-white">
                     {activeNode.initials}
@@ -299,15 +357,13 @@ export function Testimonials() {
                 <div className="w-12 h-1 mb-6" style={{ background: "linear-gradient(to right, #1886CA, transparent)" }} />
 
                 <p className="text-slate-300 text-sm leading-relaxed mb-8 flex-grow">
-                  {activeNode.ring === 0
-                    ? "Leading the neural network of our community forward. Specialized in computational architectures and accelerating DeepStation's core infrastructure."
-                    : activeNode.ring === 1
-                    ? "Driving the neural network of our community forward. Specialized in computational architectures and accelerating DeepStation's core infrastructure."
-                    : "Vital node within the DeepStation mesh. Focused on algorithmic exploration and integrating advanced systems into real-world applications."}
+                  {bioMap[activeNode.name] || "A valued member of the DeepStation community, contributing to our AI network."}
                 </p>
 
                 <a
-                  href="#"
+                  href={activeNode.linkedin || `https://www.linkedin.com/search/results/people/?keywords=${encodeURIComponent(activeNode.name)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex w-fit items-center justify-center gap-2 bg-transparent border border-[#1886CA] hover:bg-[#1886CA] active:scale-95 text-white px-6 py-3 rounded-full font-bold transition-all text-sm hover:shadow-[0_0_20px_rgba(24,134,202,0.4)]"
                 >
                   Connect on LinkedIn <ExternalLink size={16} />
