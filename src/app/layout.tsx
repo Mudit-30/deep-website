@@ -1,18 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
-});
-
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-});
 
 export const metadata: Metadata = {
   title: "DeepStation x MSRIT | AI Education, Made for India",
@@ -27,10 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
-      <body
-        className={`${inter.variable} ${spaceGrotesk.variable} font-sans antialiased bg-[#020617] text-slate-200`}
-        suppressHydrationWarning
-      >
+      <body suppressHydrationWarning>
         {children}
       </body>
     </html>
