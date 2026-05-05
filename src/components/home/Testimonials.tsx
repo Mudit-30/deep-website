@@ -47,7 +47,10 @@ const imageMap: Record<string, string> = {
   "Mihika Jain": "/img/crew/Mihika.png",
   "Subhash Kashyap K H": "/img/crew/subhash.jpeg",
   "Shaik Imran": "/img/crew/shaik.jpg",
-  "Omkar Tonne": "/img/crew/omkar.jpeg"
+  "Omkar Tonne": "/img/crew/omkar.jpeg",
+  "Swayam Bohara": "/img/crew/swayam.png",
+  "Swastik R Phadke": "/img/crew/swastik.png",
+  "Sinchana": "/img/crew/sinchana.jpeg"
 };
 
 const linkedinMap: Record<string, string> = {
