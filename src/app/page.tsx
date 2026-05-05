@@ -82,22 +82,22 @@ export default function Home() {
         <section id="home" className="relative z-20 min-h-screen w-full flex flex-col justify-center"><Hero /></section>
 
         {/* 2. Countdown to next event */}
-        <section id="hackathon" className="relative z-20 min-h-screen w-full flex flex-col justify-center"><CountdownTimer /></section>
+        <section id="hackathon" className="relative z-20 w-full"><CountdownTimer /></section>
 
         {/* 3. Scrolling AI topics ticker */}
-        <section id="blogs" className="relative z-20 min-h-screen w-full flex flex-col justify-center"><ExploreTicker /></section>
+        <section id="blogs" className="relative z-20 w-full"><ExploreTicker /></section>
 
         {/* 4. About + 3D feature cards + stats */}
-        <section id="about" className="relative z-20 min-h-screen w-full flex flex-col justify-center"><About /></section>
+        <section id="about" className="relative z-20 w-full"><About /></section>
 
         {/* 5. Events / Community Impact */}
-        <section id="events" className="relative z-20 min-h-screen w-full flex flex-col justify-center"><Events /></section>
+        <section id="events" className="relative z-20 w-full"><Events /></section>
 
         {/* 6. Testimonials carousel (Crew Network) */}
-        <section id="network" className="relative z-20 min-h-screen w-full flex flex-col justify-center"><Testimonials /></section>
+        <section id="network" className="relative z-20 w-full"><Testimonials /></section>
 
         {/* 7. Mission Archive bento grid */}
-        <section id="mission" className="relative z-20 min-h-screen w-full flex flex-col justify-center"><MissionArchive /></section>
+        <section id="mission" className="relative z-20 w-full"><MissionArchive /></section>
 
         {/* 8. Team */}
         <section id="team" className="relative z-20 min-h-screen w-full flex flex-col justify-center"><Team /></section>

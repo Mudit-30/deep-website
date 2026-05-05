@@ -35,6 +35,16 @@ const events = [
     href: "https://deepstation.ai",
     wide: false,
   },
+  {
+    icon: "🤖",
+    tag: "Workshop",
+    tagColor: "badge-purple",
+    title: "Decoding the Agent with Crew AI",
+    desc: "Join Ishan Dutta (Adobe, Ex-NVIDIA) for an exclusive session on decoding and building AI agents using Crew AI.",
+    img: "/img/Decoding AI Agents Thumbnail (1).jpg.jpeg",
+    href: "https://deepstation.ai",
+    wide: false,
+  },
 ];
 
 export function Events() {
